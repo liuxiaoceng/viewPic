@@ -11,6 +11,7 @@ var viewPic = {
 
 		this.showNumber = 0;
 		this.total = this.images.length;
+		this.currentAngel = 0;
 
 	},
 	bind: function() {
@@ -64,6 +65,7 @@ var viewPic = {
 		viewPic.addListener(viewPic.$(".gallery-ctrl-pre-btn")[0], "click", function(){
 			if(that.showNumber > 0) {
 				that.showNumber -= 1;
+				that.currentAngel = 0;
 				that.showBigPic();
 				that.updateThumpPositionBySingle();
 				that.updateActiveThump();
@@ -74,6 +76,7 @@ var viewPic = {
 		viewPic.addListener(viewPic.$(".gallery-ctrl-next-btn")[0], "click", function(){
 			if(that.showNumber < that.total-1) {
 				that.showNumber += 1;
+				that.currentAngel = 0;
 				that.showBigPic();
 				that.updateThumpPositionBySingle();
 				that.updateActiveThump();
@@ -86,6 +89,7 @@ var viewPic = {
 
 			if (index) {
 				that.showNumber = parseInt(index);
+				that.currentAngel = 0;
 				that.showBigPic();
 				that.updateThumpPositionBySingle();
 				that.updateActiveThump();
@@ -123,10 +127,12 @@ var viewPic = {
 		});
 
 		viewPic.addListener(viewPic.$(".gallery-counterclockwise-btn")[0], "click", function(){
+					that.currentAngel -= 90;
 					that.showBigPic();
 		});
 
 		viewPic.addListener(viewPic.$(".gallery-clockwise-btn")[0], "click", function(){
+					that.currentAngel += 90;
 					that.showBigPic();
 		});
 
@@ -167,6 +173,7 @@ var viewPic = {
 		}	
 	},
 	showBigPic: function() {
+		viewPic.$(".preview")[0].style.transform = "rotate("+this.currentAngel+"deg) scale(1)";
 		viewPic.$(".preview")[0].setAttribute("src",this.images[this.showNumber][0]);
 	},
 	updateBrowseInfo: function() {
