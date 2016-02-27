@@ -131,6 +131,7 @@ var viewPic = {
 					that.showBigPic();
 		});
 
+// 点击左边，向有移动，距离左边的距离增大，left 增大
 		viewPic.addListener(viewPic.$(".gallery-clockwise-btn")[0], "click", function(){
 					that.currentAngel += 90;
 					that.showBigPic();
@@ -195,6 +196,7 @@ var viewPic = {
 		direction = direction || "left";
 		num = num || 3;
 		
+		// 点击左边，向有移动，距离左边的距离增大，left 增大
 		if (direction === "left") {
 			if (curLeft < firstLeft) {
 				if (firstLeft - curLeft <= 75*num) {
@@ -206,7 +208,7 @@ var viewPic = {
 				}
 			}
 			
-		} else {
+		} else {  // 点击右边，向左移动，距离左边的距离减小，left 减小
 			if (curLeft > lastLeft) {
 				if (curLeft - lastLeft<= 75*num) {
 					viewPic.$(".gallery-thumb-list")[0].style.left = lastLeft+"px";
